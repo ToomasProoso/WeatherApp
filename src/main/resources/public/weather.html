@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: #44A08D; /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #54b6bf, #f59732); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #44A08D, #f19243); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+
+        button {
+            width: 150px;
+            padding: 10px 0;
+            text-align: center;
+            margin: 20px 10px;
+            border-radius: 25px;
+            font-weight: bold;
+            border: 4px solid #2f534f;
+            background: transparent;
+            color: #009;
+            cursor: pointer;
+            position: relative;
+        }
+
+        button:hover {
+            color: #ffffff;
+        }
+
+        button:hover:after {
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Weather App</h1>
+<input id="cityName" placeholder="City name"/>
+<button id="getButton">Get weather</button>
+<button id="allWeatherButton">Get all weather</button>
+<button id="deleteButton">Delete all</button>
+<p>
+    Forecast is: <span id="response"></span>
+</p>
+<script>
+    let cityName = document.getElementById("cityName");
+    let cityButton = document.getElementById("getButton");
+    let weatherButton = document.getElementById("allWeatherButton");
+    let delButton = document.getElementById("deleteButton");
+    let printAnswer = document.getElementById("response");
+    delButton.onclick = function () {
+    }
+
+
+    cityButton.onclick = function () {
+
+        fetch("http://localhost:9090/weather/selectCity?cityName=" + cityName.value)
+            .then(response => response.text())
+            .then(function (response) {
+                if (response.status > 200) {
+                    alert("The city you entered was not found, please try again")
+                } else {
+                    printAnswer.innerText = response
+                }
+            })
+    }
+    weatherButton.onclick = function () {
+
+        fetch("http://localhost:9090/weather/all")
+            .then(response => response.text())
+            .then(function (response) {
+                if (response.status > 200) {
+                    alert("Something is Wrong")
+                } else {
+                    printAnswer.innerText = response
+                }
+            })
+
+    }
+</script>
+</body>
+</html>

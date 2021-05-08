@@ -1,0 +1,21 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2021-04-30 add account" author="Toomas Prooso">
+        <createTable tableName="weather">
+            <column name="weather_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="city_name" type="text"/>
+            <column name="temperature" type="numeric"/>
+            <column name="wind_speed" type="numeric"/>
+            <column name="wind_direction" type="numeric"/>
+            <column name="time" type="timestamp"/>
+
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
